@@ -278,6 +278,10 @@ public class PerlParserTest extends PerlParserTestBase {
     doTest();
   }
 
+  public void testTryCatchVariants() {
+    doTest();
+  }
+
   public void testHashAcceptors() {
     doTest();
   }
