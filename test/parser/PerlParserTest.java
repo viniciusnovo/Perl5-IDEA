@@ -41,6 +41,8 @@ public class PerlParserTest extends PerlParserTestBase {
     }
   }
 
+  public void testSubExprComplex() {doTest();}
+
   public void testEndSimple() {doTest();}
 
   public void testEndMiddle() {doTest();}
