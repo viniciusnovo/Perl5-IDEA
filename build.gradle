@@ -60,7 +60,6 @@ sourceSets {
 
 apply plugin: 'org.jetbrains.intellij'
 intellij {
-    ideaDependencyCachePath="$System.env.IDEA_GRADLE_DIR"
     version "${platformVersion}${platformBranch}${platformBuild}"
     downloadSources Boolean.valueOf(downloadIdeaSource)
     intellij.plugins = [ 'PsiViewer:182.2371.1', 'IntelliLang', 'coverage']
