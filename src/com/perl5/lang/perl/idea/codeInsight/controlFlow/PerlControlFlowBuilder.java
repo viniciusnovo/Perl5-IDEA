@@ -194,7 +194,6 @@ public class PerlControlFlowBuilder extends ControlFlowBuilder {
   private class PerlControlFlowVisitor extends PerlRecursiveVisitor {
     private final Queue<Instruction> myOpenersQueue = new Queue<>(1);
 
-
     private void acceptSafe(@Nullable PsiElement o) {
       if (o != null) {
         o.accept(this);
@@ -248,6 +247,16 @@ public class PerlControlFlowBuilder extends ControlFlowBuilder {
       });
 
       catchesTails.forEach(tail -> addPendingEdge(o, tail));
+    }
+
+    @Override
+    public void visitPerlFlowControlExpr(PerlFlowControlExpr o) {
+      super.visitPerlFlowControlExpr(o);
+      PsiElement targetLoop = o.getTargetScope();
+      if (targetLoop != null) {
+        addPendingEdge(targetLoop, prevInstruction);
+        flowAbrupted();
+      }
     }
 
     @Override
