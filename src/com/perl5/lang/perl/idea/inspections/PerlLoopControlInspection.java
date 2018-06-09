@@ -73,21 +73,6 @@ public class PerlLoopControlInspection extends PerlInspection {
 
     return new PerlVisitor() {
       @Override
-      public void visitNextExpr(@NotNull PsiPerlNextExpr o) {
-        processLoopsControl(o);
-      }
-
-      @Override
-      public void visitRedoExpr(@NotNull PsiPerlRedoExpr o) {
-        processLoopsControl(o);
-      }
-
-      @Override
-      public void visitLastExpr(@NotNull PsiPerlLastExpr o) {
-        processLoopsControl(o);
-      }
-
-      @Override
       public void visitContinueExpr(@NotNull PsiPerlContinueExpr o) {
 
         PsiElement position = o;
@@ -205,7 +190,8 @@ public class PerlLoopControlInspection extends PerlInspection {
        *
        * @param expr last/next/redo expression
        */
-      private void processLoopsControl(@NotNull PsiElement expr) {
+      @Override
+      public void visitPerlFlowControlExpr(PerlFlowControlExpr expr) {
         PsiElement keyword = expr.getFirstChild();
         if (keyword == null) {
           return;
